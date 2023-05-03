@@ -1,7 +1,4 @@
-JCMS
-
-
-
+INVENTORY APP
 
 ## Panduan Install
 
