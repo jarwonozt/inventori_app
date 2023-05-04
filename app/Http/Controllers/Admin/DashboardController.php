@@ -20,7 +20,7 @@ class DashboardController extends Controller
             'home' => [
                 'date' => Carbon::now()->Format('D, d M Y'),
                 'time' => Carbon::now()->Format('g:i A'),
-                'quotes' => Http::get('https://api.quotable.io/random')->json(),
+                // 'quotes' => Http::get('https://api.quotable.io/random')->json(),
                 // 'currentUserInfo' => Location::get($ip),
             ]
         );

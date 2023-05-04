@@ -29,7 +29,7 @@
                                     <div class="text-center">
                                         <h1 class="mb-1 text-white">Welcome {{ auth()->user()->name }},</h1>
                                         <p class="card-text m-auto w-75">
-                                            {{ $data['home']['quotes']['content'] }}
+                                            {{-- {{ $data['home']['quotes']['content'] }} --}}
                                         </p>
                                     </div>
                                 </div>

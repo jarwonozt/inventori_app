@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('vendor_id');
             $table->string('code');
             $table->string('name');
-            $table->integer('qty');
+            $table->integer('qty')->default(0);
             $table->string('unit');
-            $table->string('price');
+            $table->string('price')->default(0);
             $table->string('ppn');
-            $table->integer('discount');
+            $table->integer('discount')->default(0);
             $table->text('description')->nullable();
             $table->integer('created_by')->default(0);
-            // $table->timestamp('entry_date');
-            // $table->timestamp('release_date');
+            $table->integer('no_do');
+            $table->timestamp('entry_date')->nullable();
+            $table->timestamp('do_date')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

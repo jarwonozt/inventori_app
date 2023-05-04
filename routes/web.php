@@ -23,7 +23,9 @@ use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MetaController;
+use App\Http\Controllers\VendorController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
 /*
@@ -59,15 +61,12 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     });
 
     Route::prefix('cms')->group(function (){
+        Route::resource('vendors', VendorController::class);
+        Route::resource('items', ItemController::class);
+
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('tags', TagController::class);
-
-        Route::prefix('jobs')->group(function (){
-            Route::resource('jobs', JobsController::class);
-            Route::resource('appliedjobs', JobsAppliedController::class);
-            Route::resource('jobscategories', JobsCategoryController::class);
-        });
 
         Route::resource('chats', ChatsController::class);
         Route::resource('userssetting', UserSettingController::class);
