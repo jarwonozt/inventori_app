@@ -29,7 +29,9 @@
             <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('vendors.index') }}"><i data-feather="cpu"></i><span class="menu-title text-truncate" data-i18n="Pages">Vendor</span></a></li>
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Pages">Data Barang</span></a>
                 <ul class="menu-content">
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Semua Barang</span></a>
+                    <li class="{{ request()->routeIs('items.create') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.create') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tambah Barang</span></a>
+                    </li>
+                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
                     </li>
                     <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Masuk</span></a>
                     </li>

@@ -13,7 +13,7 @@ class VendorTable extends DataTableComponent
 
     protected $model = Vendor::class;
     public $selected_id;
-    public $name, $address, $npwp, $cp;
+    public $name, $address, $npwp, $cp, $ppn;
 
     public function configure(): void
     {
@@ -37,6 +37,7 @@ class VendorTable extends DataTableComponent
             Column::make('Alamat', 'address')->searchable(),
             Column::make('NPWP', 'npwp'),
             Column::make('CP', 'cp'),
+            Column::make('PPN', 'ppn'),
             Column::make('Action', 'id')
             ->view('admin.vendors.view.action'),
         ];
@@ -77,6 +78,7 @@ class VendorTable extends DataTableComponent
         $this->address = $data->address;
         $this->npwp = $data->npwp;
         $this->cp = $data->cp;
+        $this->ppn = $data->ppn;
         $this->dispatchBrowserEvent('openModalEdit');
     }
 
@@ -87,6 +89,7 @@ class VendorTable extends DataTableComponent
         $save->address = $this->address;
         $save->npwp = $this->npwp;
         $save->cp = $this->cp;
+        $save->ppn = $this->ppn;
         $save->save();
 
         session()->flash('message', 'Vendor berhasil update.');

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('qty')->default(0);
             $table->string('unit');
             $table->string('price')->default(0);
+            $table->bigInteger('total');
             $table->string('ppn');
             $table->integer('discount')->default(0);
             $table->text('description')->nullable();

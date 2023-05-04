@@ -10,7 +10,7 @@ class VendorForm extends Component
 {
     use LivewireAlert;
 
-    public $name, $address, $npwp, $cp;
+    public $name, $address, $npwp, $cp, $ppn;
 
     protected $rules = [
         'name' => 'required|unique:vendors',
@@ -28,6 +28,7 @@ class VendorForm extends Component
             'address' => $this->address,
             'npwp' => $this->npwp,
             'cp' => $this->cp,
+            'ppn' => $this->ppn,
             'status' => 1,
             'created_by' => auth()->user()->id,
         ]);
