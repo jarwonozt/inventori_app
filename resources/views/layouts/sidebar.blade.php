@@ -39,6 +39,9 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('divisions.index') }}"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Divisi</span></a></li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('productions.index') }}"><i data-feather="server"></i><span class="menu-title text-truncate" data-i18n="Pages">Produksi</span></a></li>
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('packings.index') }}"><i data-feather='package'></i><span class="menu-title text-truncate" data-i18n="Pages">Packing</span></a></li>
             @endrole
 
             @role('super admin')

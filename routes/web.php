@@ -63,6 +63,9 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         Route::resource('vendors', VendorController::class);
         Route::resource('items', ItemController::class);
+        Route::resource('divisions', ItemController::class);
+        Route::resource('productions', ItemController::class);
+        Route::resource('packings', ItemController::class);
 
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
