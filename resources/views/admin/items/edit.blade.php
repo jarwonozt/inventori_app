@@ -1,9 +1,9 @@
 @section('title')
-    Tambah Barang Bahan Baku -
+    Edit Barang -
 @endsection
 
 <x-master-layouts>
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -12,7 +12,7 @@
                 <div class="content-header-left col-md-9 col-7 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Tambah Barang Bahan Baku</h3>
+                            <h3 class="content-header-title float-left mb-0">Edit Barang</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
@@ -21,7 +21,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="{{ route('items.index') }}">Data Barang</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Tambah Barang</li>
+                                    <li class="breadcrumb-item active">Edit Barang</li>
                                 </ol>
                             </div>
                         </div>
@@ -54,8 +54,10 @@
                             </div>
                             @endif
                             <div class="card">
-                                <form class="form" method="POST" enctype="multipart/form-data" action="{{ route('items.store') }}">
+                                <form class="form" method="POST" enctype="multipart/form-data"
+                                    action="{{ route('items.update', $data->id) }}">
                                     @csrf
+                                    @method('PUT')
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-4 col-lg-4 col-xl-4 col-12">
@@ -64,29 +66,36 @@
                                                     <select class="select2 form-control" name="vendor_id">
                                                         <option selected disabled>--Silahkan Pilih---</option>
                                                         @foreach ($vendors as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}" {{ $item->id == $data->vendor_id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 col-lg-8 col-xl-8 col-12 d-flex justify-content-end" style="padding-left:150px;">
+                                            <div class="col-md-8 col-lg-8 col-xl-8 col-12 d-flex justify-content-end"
+                                                style="padding-left:150px;">
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <h5 class="text-primary">No D.O</h5>
-                                                            <input type="number" name="no_do" id="no_do" class="form-control " autocomplete="off" placeholder="Nomor D.O" value="">
+                                                            <input type="number" name="no_do" id="no_do"
+                                                                class="form-control " autocomplete="off"
+                                                                placeholder="Nomor D.O" value="{{ $data->no_do }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group mb-2">
                                                             <h5 class="text-primary">Tanggal Masuk</h5>
-                                                            <input type="text" name="entry_date" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                                            <input type="text" name="entry_date" id="fp-date-time"
+                                                                class="form-control flatpickr-date-time"
+                                                                placeholder="YYYY-MM-DD HH:MM" value="{{ $data->entry_date }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group mb-2">
                                                             <h5 class="text-primary">Tanggal D.O</h5>
-                                                            <input type="text" name="do_date" id="fp-date-time" class="form-control flatpickr-date-time" placeholder="YYYY-MM-DD HH:MM" />
+                                                            <input type="text" name="do_date" id="fp-date-time"
+                                                                class="form-control flatpickr-date-time"
+                                                                placeholder="YYYY-MM-DD HH:MM" value="{{ $data->do_date }}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,33 +118,95 @@
                                                     <tbody id="add-volume">
                                                         <tr>
                                                             <td>
-                                                                <input type="text" name="code[]" id="code" class="form-control " autocomplete="off" placeholder="Kode Barang" value="">
+                                                                <input type="text" name="code" id="code"
+                                                                    class="form-control " autocomplete="off"
+                                                                    placeholder="Kode Barang" value="{{ $data->code }}">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="name[]" id="name" class="form-control " autocomplete="off" placeholder="Nama Barang" value="">
+                                                                <input type="text" name="name" id="name"
+                                                                    class="form-control " autocomplete="off"
+                                                                    placeholder="Nama Barang" value="{{ $data->name }}">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="qty[]" id="qty" class="form-control " autocomplete="off" placeholder="0" value="0">
+                                                                <input type="text" name="qty" id="qty"
+                                                                    class="form-control " autocomplete="off"
+                                                                    placeholder="0" value="{{ $data->qty }}">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="unit[]" id="unit" class="form-control " autocomplete="off" placeholder="Satuan" value="">
+                                                                <select class="form-control" name="unit" id="">
+                                                                    <option value="pcs" {{ $data->unit == 'pcs' ? 'selected' : '' }}>PCS</option>
+                                                                    <option value="set" {{ $data->unit == 'set' ? 'selected' : '' }}>SET</option>
+                                                                    <option value="dus" {{ $data->unit == 'dus' ? 'selected' : '' }}>DUS</option>
+                                                                    <option value="pak" {{ $data->unit == 'pak' ? 'selected' : '' }}>PAK</option>
+                                                                    <option value="gram" {{ $data->unit == 'gram' ? 'selected' : '' }}>GRAM</option>
+                                                                    <option value="kg" {{ $data->unit == 'kg' ? 'selected' : '' }}>KG</option>
+                                                                    <option value="k" {{ $data->unit == 'k' ? 'selected' : '' }}>KUINTAL</option>
+                                                                    <option value="ton" {{ $data->unit == 'ton' ? 'selected' : '' }}>TON</option>
+                                                                </select>
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="price[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">
+                                                                <input type="text" name="price" id="price"
+                                                                    class="form-control " autocomplete="off"
+                                                                    placeholder="0" value="{{ $data->price }}">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td>
-                                                                <select class="form-control" name="ppn[]" id="">
+                                                                <select class="form-control" name="ppn" id="">
+                                                                    <option value="11" {{ $data->ppn > 0 ? 'selected' : '' }}>PPN</option>
+                                                                    <option value="0" {{ $data->ppn == 0 ? 'selected' : '' }}>NON PPN</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="discount"
+                                                                    class="form-control" placeholder="0" value="{{ $data->discount }}" />
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td><button type="text" class="btn btn-secondary btn-add" disabled><i
+                                                                        class="fa fa-ban"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="code_new[]" id="code" class="form-control " autocomplete="off" placeholder="Kode Barang" value="">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="name_new[]" id="name" class="form-control " autocomplete="off" placeholder="Nama Barang" value="">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="qty_new[]" id="qty" class="form-control " autocomplete="off" placeholder="0" value="0">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" name="unit_new[]" id="">
+                                                                    <option value="pcs">PCS</option>
+                                                                    <option value="set">SET</option>
+                                                                    <option value="dus">DUS</option>
+                                                                    <option value="pak">PAK</option>
+                                                                    <option value="gram">GRAM</option>
+                                                                    <option value="kg">KG</option>
+                                                                    <option value="k">KUINTAL</option>
+                                                                    <option value="ton">TON</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="price_new[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" name="ppn_new[]" id="">
                                                                     <option value="11">PPN</option>
                                                                     <option value="0">NON PPN</option>
                                                                 </select>
                                                                 <div class="invalid-feedback"></div>
                                                             </td><td>
-                                                                <input type="number" name="discount[]" class="form-control" placeholder="0" value="0" />
+                                                                <input type="number" name="discount_new[]" class="form-control" placeholder="0" value="0" />
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                             <td><button type="text" class="btn btn-success btn-add"><i class="fa fa-plus"></i></button></td>
@@ -146,14 +217,17 @@
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group mt-1">
                                                     <h5 class="text-primary" for="fp-date-time">Deskripsi</h5>
-                                                    <textarea name="description" class="form-control" id="" rows="3"></textarea>
+                                                    <textarea name="description" class="form-control" id=""
+                                                        rows="3">{{ $data->description }}</textarea>
                                                 </div>
-                                                @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+                                                @error('description') <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-12 text-right">
                                                 <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
-                                                    <a href="{{ route('items.index') }}" class="btn btn-outline-primary mr-1">Batal</a>
+                                                    <a href="{{ route('items.index') }}"
+                                                        class="btn btn-outline-primary mr-1">Batal</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,19 +284,19 @@
                 e.preventDefault();
                 let html = '<tr>';
                 html += '<td>';
-                html += '<input type="text" name="code[]" id="code" class="form-control " autocomplete="off" placeholder="Kode Barang" value="">';
+                html += '<input type="text" name="code_new[]" id="code" class="form-control " autocomplete="off" placeholder="Kode Barang" value="">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<input type="text" name="name[]" id="name" class="form-control " autocomplete="off" placeholder="Nama Barang" value="">';
+                html += '<input type="text" name="name_new[]" id="name" class="form-control " autocomplete="off" placeholder="Nama Barang" value="">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<input type="number" name="qty[]" id="qty" class="form-control " autocomplete="off" placeholder="0" value="0">';
+                html += '<input type="number" name="qty_new[]" id="qty" class="form-control " autocomplete="off" placeholder="0" value="0">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<select class="form-control" name="unit[]" id="">';
+                html += '<select class="form-control" name="unit_new[]" id="">';
                 html += '<option value="pcs">PCS</option>';
                 html += '<option value="set">SET</option>';
                 html += '<option value="dus">DUS</option>';
@@ -234,18 +308,18 @@
                 html += '</select>'
                 html += '</td>';
                 html += '<td>';
-                html += '<input type="number" name="price[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">';
+                html += '<input type="number" name="price_new[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<select class="form-control" name="ppn[]" id="">';
+                html += '<select class="form-control" name="ppn_new[]" id="">';
                 html += '<option value="11">PPN</option>';
                 html += '<option value="0">NON PPN</option>';
                 html += '</select>';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<input type="number" name="discount[]" id="discount" class="form-control " autocomplete="off" placeholder="0" value="0">';
+                html += '<input type="number" name="discount_new[]" id="discount" class="form-control " autocomplete="off" placeholder="0" value="0">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
 
@@ -262,4 +336,4 @@
         });
     </script>
     @endpush
-</x-master-layout>
+    </x-master-layout>

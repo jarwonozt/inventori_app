@@ -2,7 +2,7 @@
     <div class="dropdown">
         <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-circle-down font-medium-3"></i></button>
         <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#" wire:click="openModalEdit({{ $row->id }})">
+            <a class="dropdown-item" href="{{ route('items.edit', $row->id) }}">
                 <i class="fa fa-pencil"></i>
                 <span class="align-middle">Edit</span>
             </a>

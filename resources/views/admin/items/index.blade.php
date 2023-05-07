@@ -1,5 +1,5 @@
 @section('title')
-    Data Vendor -
+    List Barang Bahan Baku -
 @endsection
 
 <x-master-layouts>
@@ -13,12 +13,12 @@
             <div class="content-header-left col-md-7 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Vendor</h2>
+                        <h2 class="content-header-title float-left mb-0">Barang Bahan Baku</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/dashboard">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Data Vendor
+                                <li class="breadcrumb-item active">List Barang Bahan Baku
                                 </li>
                             </ol>
                         </div>
@@ -27,31 +27,27 @@
             </div>
             <div class="content-header-right text-md-right col-md-5 col-12">
                 <div class="form-group">
-                    {{-- <a href="{{ route('articles.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="edit"></i> Create New Article</a> --}}
+                    <a href="{{ route('items.create') }}" class="btn-icon btn btn-primary btn-round"><i data-feather="plus"></i> Tambah Barang</a>
                 </div>
             </div>
         </div>
         <div class="content-body">
             <div class="row" id="basic-table">
                 <div class="col-12">
-                    <div class="card p-1">
-                        @if (session()->has('message'))
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                            <div class="alert-body"><strong>{{ session('message') }}</strong></div>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
-                        {{-- <h4>Tambah Vendor</h4> --}}
-                        @livewire('vendor-form')
+                    @if (session()->has('message'))
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <div class="alert-body"><strong>{{ session('message') }}</strong></div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    @endif
                     <div class="card p-1">
                         <div class="row" id="table-hover-row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="table-responsive">
-                                        @livewire('vendor-table')
+                                        @livewire('item-table')
                                     </div>
                                 </div>
                             </div>

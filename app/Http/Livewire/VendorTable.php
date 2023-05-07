@@ -37,7 +37,16 @@ class VendorTable extends DataTableComponent
             Column::make('Alamat', 'address')->searchable(),
             Column::make('NPWP', 'npwp'),
             Column::make('CP', 'cp'),
-            Column::make('PPN', 'ppn'),
+            Column::make('PPN', 'ppn')
+            ->format(function($value, $column, $row) {
+                if($value == 11){
+                    $data = '<span class=\'badge badge-success\'>PPN</span>';
+                }else{
+                    $data = '<span class=\'badge badge-secondary\'>Non PPN</span>';
+                }
+
+                return $data;
+            })->html(),
             Column::make('Action', 'id')
             ->view('admin.vendors.view.action'),
         ];

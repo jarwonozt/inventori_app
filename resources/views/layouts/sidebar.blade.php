@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
-                <h2 class="brand-text">{{ website()->name }}</h2>
+                <h2 class="brand-text">INVENTORI APP</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
         </ul>
@@ -31,9 +31,7 @@
                 <ul class="menu-content">
                     <li class="{{ request()->routeIs('items.create') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.create') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tambah Barang</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('articles.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
-                    </li>
-                    <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Masuk</span></a>
+                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
                     </li>
                     <li class="{{ request()->routeIs('tags.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Keluar</span></a>
                     </li>

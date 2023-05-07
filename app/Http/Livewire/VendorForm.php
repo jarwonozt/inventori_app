@@ -22,7 +22,7 @@ class VendorForm extends Component
     public function store()
     {
         $this->validate();
-
+        // dd($this->ppn);
         Vendor::create([
             'name' => $this->name,
             'address' => $this->address,

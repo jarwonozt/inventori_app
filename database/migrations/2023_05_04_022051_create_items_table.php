@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('created_by')->default(0);
             $table->integer('no_do');
+            $table->integer('status')->default(1);
             $table->timestamp('entry_date')->nullable();
             $table->timestamp('do_date')->nullable();
             $table->timestamps();
