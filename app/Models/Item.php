@@ -16,4 +16,9 @@ class Item extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function getVendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
 }

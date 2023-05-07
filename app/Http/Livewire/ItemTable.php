@@ -34,6 +34,7 @@ class ItemTable extends DataTableComponent
                 ->sortable()->isHidden(),
             Column::make("Kode", "code"),
             Column::make("Nama", "name")->searchable(),
+            Column::make("Vendor", "getVendor.name"),
             Column::make("Qty", "qty"),
             Column::make("Satuan", "unit"),
             Column::make("Harga", "price")

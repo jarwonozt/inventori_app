@@ -95,7 +95,7 @@ class ItemController extends Controller
         return view('admin.items.edit', [
             'data' => $data,
             'rows' => Item::where('vendor_id', $data->vendor_id)->get(),
-            'vendors' => Vendor::all(),
+            'vendor' => Vendor::find($data->vendor_id),
         ]);
     }
 
@@ -139,7 +139,7 @@ class ItemController extends Controller
                 // dd($request->code_new);
 
                 if($request->code_new[$i] != null){
-                    $item[$i] = Item::create([
+                    $item_new[$i] = Item::create([
                         'vendor_id' => $request->vendor_id,
                         'code' => $request->code_new[$i],
                         'name' => $request->name_new[$i],

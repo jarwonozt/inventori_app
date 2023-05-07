@@ -65,9 +65,7 @@
                                                     <h5 class="text-primary">Pilih Vendor</h5>
                                                     <select class="select2 form-control" name="vendor_id">
                                                         <option selected disabled>--Silahkan Pilih---</option>
-                                                        @foreach ($vendors as $item)
-                                                        <option value="{{ $item->id }}" {{ $item->id == $data->vendor_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                        @endforeach
+                                                        <option value="{{ $vendor->id }}" {{ $vendor->id == $data->vendor_id ? 'selected' : '' }}>{{ $vendor->name }}</option>
                                                     </select>
                                                 </div>
                                             </div>
