@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
+use App\Models\Item;
+use App\Models\Production;
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductionController extends Controller
 {
@@ -11,7 +16,7 @@ class ProductionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.productions.index');
     }
 
     /**
@@ -19,7 +24,10 @@ class ProductionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.productions.create', [
+            'divisions' => Division::all(),
+            'items' => Item::where('qty', '>', 0)->get(),
+        ]);
     }
 
     /**
@@ -27,7 +35,32 @@ class ProductionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'division_id' => 'required',
+            'item_id' => 'required',
+        ]);
+
+        $dataItem = json_encode($request->item_id);
+        // dd($dataItem);
+        try {
+            $production = Production::create([
+                'name' => $request->name,
+                'division_id' => $request->division_id,
+                'item_id' => $dataItem,
+                'description' => $request->description,
+                'status' => 1,
+                'created_by' => auth()->user()->id,
+            ]);
+
+            if($production){
+                Alert::success('Ditambahkan', 'Data Produksi berhasil ditambhakan.');
+                return redirect()->route('productions.index');
+            }
+        } catch (Exception $e) {
+            dd($e);
+            return back()->withInput();
+        }
     }
 
     /**

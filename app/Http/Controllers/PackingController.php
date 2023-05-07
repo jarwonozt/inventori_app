@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Production;
 use Illuminate\Http\Request;
 
 class PackingController extends Controller
@@ -11,7 +12,7 @@ class PackingController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.packings.index');
     }
 
     /**
@@ -19,7 +20,9 @@ class PackingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.packings.create', [
+            'productions' => Production::where('status', 1)->get(),
+        ]);
     }
 
     /**

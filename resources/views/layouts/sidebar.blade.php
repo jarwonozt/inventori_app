@@ -22,7 +22,7 @@
                     </li>
                     <li class="{{ request()->routeIs('categories.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Categories</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('tags.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tags</span></a>
+                    <li class="{{ request()->routeIs('items.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tags</span></a>
                     </li>
                 </ul>
             </li> --}}
@@ -31,15 +31,15 @@
                 <ul class="menu-content">
                     <li class="{{ request()->routeIs('items.create') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.create') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Tambah Barang</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('articles.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
+                    <li class="{{ request()->routeIs('items.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('tags.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('tags.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Keluar</span></a>
+                    <li class="{{ request()->routeIs('items.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Keluar</span></a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('divisions.index') }}"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Divisi</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('productions.index') }}"><i data-feather="server"></i><span class="menu-title text-truncate" data-i18n="Pages">Produksi</span></a></li>
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('packings.index') }}"><i data-feather='package'></i><span class="menu-title text-truncate" data-i18n="Pages">Packing</span></a></li>
+            <li class="nav-item {{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('divisions.index') }}"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Divisi</span></a></li>
+            <li class="nav-item {{ request()->routeIs('productions.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('productions.index') }}"><i data-feather="server"></i><span class="menu-title text-truncate" data-i18n="Pages">Produksi</span></a></li>
+            <li class="nav-item {{ request()->routeIs('packings.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('packings.index') }}"><i data-feather='package'></i><span class="menu-title text-truncate" data-i18n="Pages">Packing</span></a></li>
             @endrole
 
             @role('super admin')

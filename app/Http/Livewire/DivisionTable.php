@@ -4,15 +4,15 @@ namespace App\Http\Livewire;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Item;
+use App\Models\Division;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class ItemTable extends DataTableComponent
+class DivisionTable extends DataTableComponent
 {
     use LivewireAlert;
 
-    protected $model = Item::class;
-    public $selected_id;
+    protected $model = Division::class;
+    public $selected_id, $name;
 
     public function configure(): void
     {
@@ -20,13 +20,12 @@ class ItemTable extends DataTableComponent
     }
 
     protected $listeners = [
-            'deleteSelected',
-        ];
+        'deleteSelected',
+    ];
 
     public array $bulkActions = [
             'deleteSelectedConfirm' => 'Delete',
         ];
-
     public function columns(): array
     {
         return [
@@ -34,33 +33,10 @@ class ItemTable extends DataTableComponent
                 ->sortable()->isHidden(),
             Column::make("Kode", "code"),
             Column::make("Nama", "name")->searchable(),
-            Column::make("Vendor", "getVendor.name"),
-            Column::make("Qty", "qty"),
-            Column::make("Satuan", "unit"),
-            Column::make("Harga", "price")
-            ->format(function($value) {
-                return number_format($value);
-            }),
-            Column::make('PPN', 'ppn')
-            ->format(function($value, $column, $row) {
-                if($value == 11){
-                    $data = '<span class=\'badge badge-success\'>PPN</span>';
-                }else{
-                    $data = '<span class=\'badge badge-secondary\'>Non PPN</span>';
-                }
-
-                return $data;
-            })->html(),
-            Column::make("Diskon", "discount")
-            ->format(function($value) {
-                return $value.'%';
-            }),
-            Column::make("Total", "total")
-            ->format(function($value) {
-                return number_format($value);
-            }),
+            Column::make("Created at", "created_at")
+                ->sortable(),
             Column::make('Action', 'id')
-            ->view('admin.items.view.action'),
+            ->view('admin.divisions.view.action'),
         ];
     }
 
@@ -82,15 +58,33 @@ class ItemTable extends DataTableComponent
 
     public function deleteSelected()
     {
-        Item::whereIn('id', $this->getSelected())->delete();
+        Division::whereIn('id', $this->getSelected())->delete();
         $this->alert('success', 'Behasil', [
             'position' => 'center',
             'timer' => 3000,
             'toast' => false,
-            'text' => 'Data Barang berhasil dihapus.',
+            'text' => 'Data Divisi berhasil dihapus.',
             ]);
     }
 
+    public function openModalEdit($id)
+    {
+        $this->selected_id = $id;
+        $data = Division::findOrFail($id);
+        $this->name = $data->name;
+        $this->dispatchBrowserEvent('openModalEdit');
+    }
+
+    public function update()
+    {
+        $save = Division::findOrFail($this->selected_id);
+        $save->name = $this->name;
+        $save->save();
+
+        session()->flash('message', 'Divisi berhasil update.');
+
+        return redirect()->route('divisions.index');
+    }
 
     public function deleteModal($id)
     {
@@ -99,12 +93,12 @@ class ItemTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Item::findOrFail($this->selected_id)->delete();
+        Division::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
     public function customView(): string
     {
-        return 'admin.vendors.modal';
+        return 'admin.divisions.modal';
     }
 }

@@ -21,10 +21,13 @@ use App\Http\Controllers\Admin\Jobs\JobsController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\Post\TagController;
 use App\Http\Controllers\Admin\Settings\RolePermissionController;
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\Frontend\JobsController as FrontendJobsController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MetaController;
+use App\Http\Controllers\PackingController;
+use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\VendorController;
 use App\Http\Livewire\ArticleCategoriesTable;
 
@@ -63,9 +66,9 @@ Route::group(['middleware' => ['role:super admin|writer|admin']], function () {
     Route::prefix('cms')->group(function (){
         Route::resource('vendors', VendorController::class);
         Route::resource('items', ItemController::class);
-        Route::resource('divisions', ItemController::class);
-        Route::resource('productions', ItemController::class);
-        Route::resource('packings', ItemController::class);
+        Route::resource('divisions', DivisionController::class);
+        Route::resource('productions', ProductionController::class);
+        Route::resource('packings', PackingController::class);
 
         Route::resource('articles', ArticleController::class);
         Route::resource('categories', CategoryController::class);
