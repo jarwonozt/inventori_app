@@ -48,20 +48,20 @@
                             </div>
                             @endif
                             <div class="card">
-                                <form class="form" method="POST" enctype="multipart/form-data" action="{{ route('productions.store') }}">
+                                <form class="form" method="POST" enctype="multipart/form-data" action="{{ route('packings.store') }}">
                                     @csrf
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Nama Produk</h5>
-                                                    <input type="text" name="name" id="name" class="form-control " autocomplete="off" placeholder="Nama Produk" value="">
+                                                    <h5 class="text-primary">Kode Packing</h5>
+                                                    <input type="text" name="code" id="name" class="form-control " autocomplete="off" placeholder="" value="">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Produk</h5>
-                                                    <select class="form-control" name="productions_id">
+                                                    <select class="select2 form-control" name="production_id[]" multiple>
                                                         @foreach ($productions as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                         @endforeach
@@ -88,7 +88,7 @@
                                             <div class="col-12 text-right">
                                                 <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
-                                                    <a href="{{ route('items.index') }}" class="btn btn-outline-primary mr-1">Batal</a>
+                                                    <a href="{{ route('productions.index') }}" class="btn btn-outline-primary mr-1">Batal</a>
                                                 </div>
                                             </div>
                                         </div>

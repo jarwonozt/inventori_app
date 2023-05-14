@@ -98,7 +98,7 @@
                                             <div class="col-12 text-right">
                                                 <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
-                                                    <a href="{{ route('items.index') }}" class="btn btn-outline-primary mr-1">Batal</a>
+                                                    <a href="{{ route('productions.index') }}" class="btn btn-outline-primary mr-1">Batal</a>
                                                 </div>
                                             </div>
                                         </div>

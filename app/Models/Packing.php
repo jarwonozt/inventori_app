@@ -19,4 +19,10 @@ class Packing extends Model
     {
         return $this->belongsTo(Production::class, 'production_id');
     }
+
+    public function getProductsAttribute()
+    {
+        $data = json_decode($this->production_id);
+        return Production::whereIn('id', $data)->get();
+    }
 }

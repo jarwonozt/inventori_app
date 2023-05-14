@@ -9,6 +9,7 @@ use App\Models\Packing;
 class PackingTable extends DataTableComponent
 {
     protected $model = Packing::class;
+    public $selected_id;
 
     public function configure(): void
     {
@@ -20,12 +21,29 @@ class PackingTable extends DataTableComponent
         return [
             Column::make("Id", "id")
                 ->sortable()->isHidden(),
-            Column::make("Produk", "getProduction.name"),
-            Column::make("Status", "status"),
+            Column::make("Kode", "code"),
+            Column::make('Produk', 'id')
+                ->view('admin.packings.view.products'),
             Column::make("Tanggal", "created_at")
                 ->sortable(),
             Column::make('Action', 'id')
             ->view('admin.packings.view.action'),
         ];
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        Packing::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
+    public function customView(): string
+    {
+        return 'admin.packings.modal';
     }
 }
