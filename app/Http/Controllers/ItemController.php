@@ -47,6 +47,8 @@ class ItemController extends Controller
             'do_date' => 'required',
         ]);
         // dd($count);
+        $vendor = Vendor::find($request->vendor_id);
+
         for ($i=0; $i < $count; $i++) {
             if($request->discount[$i] > 0)
             {
@@ -61,7 +63,7 @@ class ItemController extends Controller
                 'qty' => $request->qty[$i],
                 'unit' => $request->unit[$i],
                 'price' => $request->price[$i],
-                'ppn' => $request->ppn[$i],
+                'ppn' => $vendor->ppn,
                 'discount' => $request->discount[$i],
                 'total' => $request->discount[$i] > 0 ? $request->qty[$i] * $request->price[$i] - $discount[$i] : $request->qty[$i] * $request->price[$i],
                 'description' => $request->description,
@@ -111,6 +113,8 @@ class ItemController extends Controller
 
             }
         // dd($count);
+        $vendor = Vendor::find($request->vendor_id);
+
         $item = Item::where('id', $id)->update([
                 'vendor_id' => $request->vendor_id,
                 'code' => $request->code,
@@ -118,7 +122,7 @@ class ItemController extends Controller
                 'qty' => $request->qty,
                 'unit' => $request->unit,
                 'price' => $request->price,
-                'ppn' => $request->ppn,
+                'ppn' => $vendor->ppn,
                 'discount' => $request->discount,
                 'total' => $request->discount > 0 ? $request->qty * $request->price - $discount : $request->qty * $request->price,
                 'description' => $request->description,
@@ -146,7 +150,7 @@ class ItemController extends Controller
                         'qty' => $request->qty_new[$i],
                         'unit' => $request->unit_new[$i],
                         'price' => $request->price_new[$i],
-                        'ppn' => $request->ppn_new[$i],
+                        'ppn' => $vendor->ppn,
                         'discount' => $request->discount_new[$i],
                         'total' => $request->discount_new[$i] > 0 ? $request->qty_new[$i] * $request->price_new[$i] - $discount_new[$i] : $request->qty_new[$i] * $request->price_new[$i],
                         'description' => $request->description,

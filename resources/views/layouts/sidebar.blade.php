@@ -33,8 +33,8 @@
                     </li>
                     <li class="{{ request()->routeIs('items.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">List Barang</span></a>
                     </li>
-                    <li class="{{ request()->routeIs('items.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('items.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Keluar</span></a>
-                    </li>
+                    {{-- <li class="#"><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Authentication">Barang Keluar</span></a>
+                    </li> --}}
                 </ul>
             </li>
             <li class="nav-item {{ request()->routeIs('divisions.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('divisions.index') }}"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Pages">Divisi</span></a></li>

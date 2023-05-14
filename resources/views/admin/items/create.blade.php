@@ -101,7 +101,7 @@
                                                             <th class="text-primary">Qty</th>
                                                             <th class="text-primary">Satuan</th>
                                                             <th class="text-primary">Harga</th>
-                                                            <th class="text-primary">PPN/NON PPN</th>
+                                                            {{-- <th class="text-primary">PPN/NON PPN</th> --}}
                                                             <th class="text-primary">Diskon</th>
                                                             <th class="text-primary"></th>
                                                         </tr>
@@ -128,13 +128,14 @@
                                                                 <input type="text" name="price[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
-                                                            <td>
+                                                            {{-- <td>
                                                                 <select class="form-control" name="ppn[]" id="">
                                                                     <option value="11">PPN</option>
                                                                     <option value="0">NON PPN</option>
                                                                 </select>
                                                                 <div class="invalid-feedback"></div>
-                                                            </td><td>
+                                                            </td> --}}
+                                                            <td>
                                                                 <input type="number" name="discount[]" class="form-control" placeholder="0" value="0" />
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
@@ -237,13 +238,13 @@
                 html += '<input type="number" name="price[]" id="price" class="form-control " autocomplete="off" placeholder="0" value="0">';
                 html += '<div class = "invalid-feedback"> </div>';
                 html += '</td>';
-                html += '<td>';
-                html += '<select class="form-control" name="ppn[]" id="">';
-                html += '<option value="11">PPN</option>';
-                html += '<option value="0">NON PPN</option>';
-                html += '</select>';
-                html += '<div class = "invalid-feedback"> </div>';
-                html += '</td>';
+                // html += '<td>';
+                // html += '<select class="form-control" name="ppn[]" id="">';
+                // html += '<option value="11">PPN</option>';
+                // html += '<option value="0">NON PPN</option>';
+                // html += '</select>';
+                // html += '<div class = "invalid-feedback"> </div>';
+                // html += '</td>';
                 html += '<td>';
                 html += '<input type="number" name="discount[]" id="discount" class="form-control " autocomplete="off" placeholder="0" value="0">';
                 html += '<div class = "invalid-feedback"> </div>';

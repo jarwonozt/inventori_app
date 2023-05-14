@@ -42,8 +42,8 @@
                         <div class="form-group mt-1">
                             <h5 class="text-uppercase text-primary" for="blog-edit-title">PPN</h5>
                             <select class="form-control" wire:model="ppn" id="">
-                                <option value="11">PPN</option>
-                                <option value="0">NON PPN</option>
+                                <option value="11">INCLUDE PPN</option>
+                                <option value="0">EXCLUDE PPN</option>
                             </select>
                         </div>
                         @error('ppn') <span class="text-danger">{{ $message }}</span> @enderror
