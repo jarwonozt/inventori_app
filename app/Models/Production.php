@@ -21,7 +21,13 @@ class Production extends Model
 
     public function getDivision()
     {
-        return $this->belongsTo(Division::class, 'division_id');
+        return $this->belongsTo(Division::class, 'division_origin');
+    }
+
+
+    public function getDivisionTarget()
+    {
+        return $this->belongsTo(Division::class, 'target_division');
     }
 
     public function getItemsAttribute()

@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Division;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Production;
+use Illuminate\Support\Str;
 
 class ProductionTable extends DataTableComponent
 {
@@ -23,7 +25,12 @@ class ProductionTable extends DataTableComponent
                 ->sortable()->isHidden(),
             Column::make("Nama", "name")
                 ->searchable(),
-            Column::make("Divisi", "getDivision.name"),
+            Column::make("Asal Divisi", "getDivision.name"),
+            Column::make("Divisi Tujuan", "target_division")
+            ->format(function($value){
+                    $targetDivision = Division::find($value);
+                        return Str::title($targetDivision->name);
+                    })->html(),
             Column::make('Bahan', 'id')
                 ->view('admin.productions.view.item'),
             Column::make("Tanggal Produksi", "created_at")

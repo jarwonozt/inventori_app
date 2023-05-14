@@ -37,7 +37,8 @@ class ProductionController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'division_id' => 'required',
+            'division_origin' => 'required',
+            'target_division' => 'required',
             'item_id' => 'required',
         ]);
 
@@ -46,7 +47,8 @@ class ProductionController extends Controller
         try {
             $production = Production::create([
                 'name' => $request->name,
-                'division_id' => $request->division_id,
+                'target_division' => $request->target_division,
+                'division_origin' => $request->division_origin,
                 'item_id' => $dataItem,
                 'description' => $request->description,
                 'status' => 1,
@@ -58,7 +60,7 @@ class ProductionController extends Controller
                 return redirect()->route('productions.index');
             }
         } catch (Exception $e) {
-            dd($e);
+            dd($e->getMessage());
             return back()->withInput();
         }
     }

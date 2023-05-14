@@ -1,5 +1,5 @@
 @section('title')
-    Tambah Barang Bahan Baku -
+    Tambah Produksi -
 @endsection
 
 <x-master-layouts>
@@ -12,16 +12,16 @@
                 <div class="content-header-left col-md-9 col-7 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Tambah Barang Bahan Baku</h3>
+                            <h3 class="content-header-title float-left mb-0">Tambah Produksi</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
                                         <a href="#">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{{ route('items.index') }}">Data Barang</a>
+                                        <a href="{{ route('productions.index') }}">Data Produksi</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Tambah Barang</li>
+                                    <li class="breadcrumb-item active">Tambah Produksi</li>
                                 </ol>
                             </div>
                         </div>
@@ -58,12 +58,22 @@
                                                     <input type="text" name="name" id="name" class="form-control " autocomplete="off" placeholder="Nama Produk" value="">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-sm-6 col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Pilih Divisi</h5>
-                                                    <select class="form-control" name="division_id">
+                                                    <h5 class="text-primary">Asal Divisi</h5>
+                                                    <select class="form-control" name="division_origin">
                                                         @foreach ($divisions as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Divisi Tujuan</h5>
+                                                    <select class="form-control" name="target_division">
+                                                        @foreach ($divisions as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -73,7 +83,7 @@
                                                     <h5 class="text-primary">Pilih Barang</h5>
                                                     <select class="select2 form-control" name="item_id[]" multiple>
                                                         @foreach ($items as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->code }} - {{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
